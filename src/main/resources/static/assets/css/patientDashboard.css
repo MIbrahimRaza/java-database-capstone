@@ -1,0 +1,109 @@
+/* ===== Doctor card actions ===== */
+.card-actions {
+    padding: 12px;
+    background-color: #333;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.card-actions:hover { background-color: #1a1a1a; }
+
+.card-actions button {
+    width: 100%;
+    padding: 8px;
+    background: transparent;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* ===== Modal wrapper used on this page ===== */
+.modal-content {
+    position: relative;
+    margin: 8% auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 450px;
+    background: #fff;
+    border-radius: 10px;
+    animation: modalFade 0.3s ease;
+}
+
+.modal-content .close {
+    top: 8px;
+    right: 16px;
+    color: #333;
+}
+
+.modal-content #modal-body { margin: 0; padding: 0; max-width: none; width: 100%; }
+
+/* ===== Ripple overlay ===== */
+.ripple-overlay {
+    position: fixed;
+    z-index: 2000;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(1, 92, 93, 0.6);
+    pointer-events: none;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+}
+
+.ripple-overlay.active {
+    transform: translate(-50%, -50%) scale(40);
+    opacity: 0.9;
+}
+
+/* ===== Bottom pop-up booking modal ===== */
+.modalApp {
+    position: fixed;
+    left: 50%;
+    bottom: -100%;
+    transform: translateX(-50%);
+    z-index: 2100;
+    width: 90%;
+    max-width: 420px;
+    padding: 25px 20px;
+    background: #fff;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    transition: bottom 0.4s ease;
+}
+
+.modalApp.active { bottom: 0; }
+
+.modalApp h2 {
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+/* ===== Form fields inside the modal ===== */
+.modalApp input,
+.modalApp select {
+    display: block;
+    width: 90%;
+    margin: 12px auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+/* ===== Confirm button ===== */
+.confirm-booking {
+    margin-top: 10px;
+    padding: 10px 24px;
+    background-color: #015c5d;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: filter 0.2s ease;
+}
+
+.confirm-booking:hover { filter: brightness(1.2); }
