@@ -1,4 +1,4 @@
-import { getAllAppointments } from "./services/appointmentRecordService.js";
+import { getAllAppointments } from "./appointmentRecordService.js";
 import { createPatientRow } from "./components/patientRows.js";
 
 // ===== Global variables =====
