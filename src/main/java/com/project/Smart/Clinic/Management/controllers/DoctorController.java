@@ -5,6 +5,7 @@ import com.project.Smart.Clinic.Management.models.Doctor;
 import com.project.Smart.Clinic.Management.services.DoctorService;
 import com.project.Smart.Clinic.Management.services.Service;
 import jakarta.validation.Valid;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -76,6 +78,22 @@ public class DoctorController {
             return message(HttpStatus.NOT_FOUND, "Doctor not found");
         }
         return message(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to delete the doctor");
+    }
+
+    @GetMapping("/availability/{user}/{doctorId}/{date}/{token}")
+    public ResponseEntity<Map<String, Object>> getDoctorAvailability(
+            @PathVariable String user,
+            @PathVariable Long doctorId,
+            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+            @PathVariable String token) {
+        ResponseEntity<Map<String, String>> auth = service.validateToken(token, user);
+        if (isDenied(auth)) {
+            return ResponseEntity.status(auth.getStatusCode())
+                    .body(new HashMap<String, Object>(auth.getBody()));
+        }
+        Map<String, Object> body = new HashMap<>();
+        body.put("availability", doctorService.getDoctorAvailability(doctorId, date));
+        return ResponseEntity.ok(body);
     }
 
     @GetMapping("/filter/{name}/{time}/{specialty}")
